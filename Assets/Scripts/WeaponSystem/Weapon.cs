@@ -6,7 +6,8 @@ namespace YK.WeaponSystem
 {
     public class Weapon : MonoBehaviour
     {
-        public float shootingDelay = 0.2f;
+        [SerializeField] AttackPatternSO _attackpattern;
+        [SerializeField] Transform _shootingStartPoint;
         public bool shootingDelayed;
 
         public GameObject projectile;
@@ -18,14 +19,14 @@ namespace YK.WeaponSystem
             if (shootingDelayed == false)
             {
                 shootingDelayed = true;
-                gunAudio.Play();
-                GameObject p = Instantiate(projectile, transform.position, Quaternion.identity);
+                gunAudio.PlayOneShot(_attackpattern.attackSFX);
+                _attackpattern.PerformAttack(_shootingStartPoint);
                 StartCoroutine(DelayShooting());
             }
         }
         private IEnumerator DelayShooting()
         {
-            yield return new WaitForSeconds(shootingDelay);
+            yield return new WaitForSeconds(_attackpattern.attackDelay);
             shootingDelayed = false;
         }
     }
