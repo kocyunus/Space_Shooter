@@ -10,7 +10,6 @@ public class ScoreSystem : MonoBehaviour
 
     public int currentScore;
 
-    string scoreKey = "Score";
 
     private void Awake()
     {
