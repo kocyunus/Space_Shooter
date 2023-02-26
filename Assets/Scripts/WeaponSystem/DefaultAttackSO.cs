@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace YK.WeaponSystem
 {
-    [CreateAssetMenu(menuName ="Attack/DefaultAttack")]
+    [CreateAssetMenu(menuName ="Attacks/DefaultAttack")]
     public class DefaultAttackSO : AttackPatternSO
     {
         [SerializeField] GameObject _projectile;

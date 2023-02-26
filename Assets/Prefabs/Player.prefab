@@ -356,7 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46b18cf53199654e88af0811ceacb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackpattern: {fileID: 11400000, guid: 205f29df18046eb45af95a2b79a58361, type: 2}
+  _attackpattern: {fileID: 11400000, guid: c60d286abe84ee0468b1c2b6b0a6869a, type: 2}
   _shootingStartPoint: {fileID: 7192787957441989041}
   shootingDelayed: 0
   projectile: {fileID: 8735426833441098796, guid: f816b70780456a34497ab0a5a09dcdb9, type: 3}
