@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Projectile : MonoBehaviour,IHittable
+using YK.HealthSystem;
+public class Projectile : MonoBehaviour
 {
     public float speed = 10;
     public Rigidbody2D rb2d;
@@ -11,9 +11,13 @@ public class Projectile : MonoBehaviour,IHittable
 
     public bool disabled = false;
 
+    Health _health;
+    int _initialHealthValue = 1;
     // Start is called before the first frame update
     void Start()
     {
+        _health = GetComponent<Health>();
+        _health.InitializeHealth(_initialHealthValue);
         rb2d.velocity = transform.up * speed;
         StartCoroutine(DeathAfterDelay(deathDelay));
     }
@@ -31,12 +35,9 @@ public class Projectile : MonoBehaviour,IHittable
             if (hittable != null)
                 hittable.GetHit(1, gameObject);
 
-            GetHit(1, gameObject);
+            Destroy(gameObject);
         }
     }
 
-    public void GetHit(int damage, GameObject sender)
-    {
-        Destroy(gameObject);
-    }
+
 }
