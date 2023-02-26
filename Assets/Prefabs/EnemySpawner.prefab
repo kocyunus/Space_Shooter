@@ -71,7 +71,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb9a9c53a6c8dd4188019bd5b5c8780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 6213595567998338359, guid: 8c71bcf285e510e4e984635e0d3a3f92, type: 3}
+  enemyList:
+  - {fileID: 6213595567998338359, guid: fa4439623524c3148810759f2f8de0e2, type: 3}
+  - {fileID: 6213595567998338359, guid: 8c71bcf285e510e4e984635e0d3a3f92, type: 3}
+  - {fileID: 6213595567998338359, guid: fa4439623524c3148810759f2f8de0e2, type: 3}
+  - {fileID: 6213595567998338359, guid: 8c71bcf285e510e4e984635e0d3a3f92, type: 3}
   timeMin: 0.1
   timeMax: 0.3
   maxEnemies: 3
