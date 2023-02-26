@@ -47,6 +47,8 @@ public class Player : MonoBehaviour,IHittable
     // Update is called once per frame
     void Update()
     {
+        if (!isAlive)
+            return;
         //get input and move
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         input.Normalize();
