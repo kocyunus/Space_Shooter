@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc206ab9b57ca5446948eeeb437f26eb, type: 3}
+  m_Name: Default Enemy Attack SO
+  m_EditorClassIdentifier: 
+  _attackDelay: 2
+  _attackSFX: {fileID: 8300000, guid: 286649637075013438cfc1b595461b20, type: 3}
+  _projectile: {fileID: 7346062771074515281, guid: 43382fb60acb52f44a058896f62e5259, type: 3}

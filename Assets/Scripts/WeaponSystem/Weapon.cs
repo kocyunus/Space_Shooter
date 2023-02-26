@@ -17,6 +17,11 @@ namespace YK.WeaponSystem
         [SerializeField] List<AttackPatternSO> _weapons;
         int _weaponIndex;
         [SerializeField] AudioClip _weaponSwapSFX;
+        private void Start()
+        {
+            if (shootingDelayed)
+                StartCoroutine(DelayShooting());
+        }
         public void SwapWeapon() 
         {
             _weaponIndex++;
