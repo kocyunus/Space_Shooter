@@ -361,6 +361,12 @@ MonoBehaviour:
   shootingDelayed: 0
   projectile: {fileID: 8735426833441098796, guid: f816b70780456a34497ab0a5a09dcdb9, type: 3}
   gunAudio: {fileID: 6852837349264308879}
+  _weapons:
+  - {fileID: 11400000, guid: 205f29df18046eb45af95a2b79a58361, type: 2}
+  - {fileID: 11400000, guid: c1065642d3e32b04ca30ebed8c719855, type: 2}
+  - {fileID: 11400000, guid: dbd2a3ddf512baf4e8433d08e7f09d9c, type: 2}
+  - {fileID: 11400000, guid: c60d286abe84ee0468b1c2b6b0a6869a, type: 2}
+  _weaponSwapSFX: {fileID: 8300000, guid: 407187b56064a9a43b6a8d635bf10014, type: 3}
 --- !u!82 &6852837349264308879
 AudioSource:
   m_ObjectHideFlags: 0

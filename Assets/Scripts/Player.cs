@@ -57,6 +57,11 @@ public class Player : MonoBehaviour
         {
             _weapon.PerformAttack();
         }
+
+        if (Input.GetKey(KeyCode.Q) && _weapon != null)
+        {
+            _weapon.SwapWeapon();
+        }
     }
 
     private void FixedUpdate()

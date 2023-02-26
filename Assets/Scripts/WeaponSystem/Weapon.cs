@@ -14,6 +14,16 @@ namespace YK.WeaponSystem
 
         public AudioSource gunAudio;
 
+        [SerializeField] List<AttackPatternSO> _weapons;
+        int _weaponIndex;
+        [SerializeField] AudioClip _weaponSwapSFX;
+        public void SwapWeapon() 
+        {
+            _weaponIndex++;
+            _weaponIndex = _weaponIndex >= _weapons.Count ? 0 : _weaponIndex;
+            _attackpattern = _weapons[_weaponIndex];
+            gunAudio.PlayOneShot(_weaponSwapSFX);
+        }
         public void PerformAttack() 
         {
             if (shootingDelayed == false)
