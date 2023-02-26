@@ -29,6 +29,16 @@ public class Enemy : MonoBehaviour
     {
         GetHealth();
     }
+    private void OnDisable()
+    {
+        _health._onDeath.RemoveAllListeners();
+        _health._onHit.RemoveAllListeners();
+    }
+    private void OnDestroy()
+    {
+        _health._onDeath.RemoveAllListeners();
+        _health._onHit.RemoveAllListeners();
+    }
     private void Awake()
     {
         

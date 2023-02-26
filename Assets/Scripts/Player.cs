@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     public ScreenBounds screenBounds;
 
-    public int health = 3;
+
 
     [SerializeField]
     private Transform liveImagesUIParent;
@@ -24,10 +24,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rb2d;
     Vector2 movementVector = Vector2.zero;
 
-    public AudioClip hitClip, deathClip;
-    public AudioSource hitSource;
 
-    public GameObject explosionFX;
 
     public bool isAlive = true;
 
@@ -94,10 +91,10 @@ public class Player : MonoBehaviour
 
     public void ReduceLives()
     {
-        health--;
+
         for (int i = 0; i < lives.Count; i++)
         {
-            if (i >= health)
+            if (i >= _health.currentHealth)
             {
                 lives[i].color = Color.black;
             }
@@ -107,32 +104,25 @@ public class Player : MonoBehaviour
             }
 
         }
-        if (health <= 0)
+        if (_health.currentHealth <= 0)
         {
             isAlive = false;
-            hitSource.PlayOneShot(deathClip);
+ 
             GetComponent<Collider2D>().enabled = false;
             GetComponentInChildren<SpriteRenderer>().enabled = false;
             StartCoroutine(DestroyCoroutine());
         }
-        else
-        {
-            hitSource.PlayOneShot(hitClip);
-        }
+
     }
 
 
 
 
-    public void GetHitFeedback()
-    {
-        hitSource.PlayOneShot(hitClip);
-    }
+  
 
     public void Death()
     {
         isAlive = false;
-        hitSource.PlayOneShot(deathClip);
         GetComponent<Collider2D>().enabled = false;
         GetComponentInChildren<SpriteRenderer>().enabled = false;
         StartCoroutine(DestroyCoroutine());
@@ -156,8 +146,8 @@ public class Player : MonoBehaviour
 
     private IEnumerator DestroyCoroutine()
     {
-        Instantiate(explosionFX, transform.position, Quaternion.identity); ;
-        yield return new WaitForSeconds(deathClip.length);
+
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
         loseScreen.Toggle();
         menuButton.interactable = false;
