@@ -51,8 +51,7 @@ public class EnemySpawner : MonoBehaviour
             currentEnemies.Add(newEnemy);
             newEnemy.GetComponent<Enemy>().enemySpawner = this;
             yield return new WaitForSeconds(UnityEngine.Random.Range(timeMin, timeMax));
-        }
-        
+        }   
     }
 
     public void EnemyKilled(Enemy enemy, bool playerKill)
