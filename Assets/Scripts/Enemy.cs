@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Enemy : MonoBehaviour,IHittable
+using YK.HealthSystem;
+public class Enemy : MonoBehaviour
 {
     public Player player;
-    public int health = 3;
-
+    Health _health;
+    [SerializeField]int _initializeHealthValue = 3;
+    
     public GameObject projectile;
     public float shootingDelay;
 
@@ -24,9 +25,13 @@ public class Enemy : MonoBehaviour,IHittable
     public AudioSource hitSource;
 
     public GameObject explosionFX, hitParticle;
-
+    private void OnEnable()
+    {
+        GetHealth();
+    }
     private void Awake()
     {
+        
         player = FindObjectOfType<Player>();
         rb2d = GetComponent<Rigidbody2D>();
         speed += UnityEngine.Random.Range(0, speedVariation);
@@ -100,27 +105,15 @@ public class Enemy : MonoBehaviour,IHittable
         Destroy(gameObject);
     }
 
-    public void GetHit(int damage, GameObject sender)
-    {
-        health--;
 
-        if (health <= 0)
-        {
-            Death();
-        }
-        else
-        {
-            GetHitFeedback();
-        }
-    }
 
-    private void GetHitFeedback()
+    public void GetHitFeedback()
     {
         hitSource.PlayOneShot(hitClip);
         Instantiate(hitParticle, transform.position, Quaternion.identity);
     }
 
-    private void Death()
+    public void Death()
     {
         enemySpawner.EnemyKilled(this, true);
         GetComponent<Collider2D>().enabled = false;
@@ -128,5 +121,12 @@ public class Enemy : MonoBehaviour,IHittable
         GetComponent<SpriteRenderer>().enabled = false;
         Instantiate(explosionFX, transform.position, Quaternion.identity);
         StartCoroutine(DestroyCoroutine());
+    }
+    void GetHealth()
+    {
+        if (_health == null)
+            _health = GetComponent<Health>();
+
+        _health.InitializeHealth(_initializeHealthValue);
     }
 }

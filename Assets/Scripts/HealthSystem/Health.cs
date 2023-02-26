@@ -7,8 +7,9 @@ namespace YK.HealthSystem
 {
     public class Health : MonoBehaviour, IHittable
     {
+        [field:SerializeField]
         public int currentHealth { get; private set; }
-        [SerializeField] UnityEvent _onHit, _onDeath;
+        public UnityEvent _onHit, _onDeath;
         public void GetHit(int damage, GameObject sender)
         {
             currentHealth -= damage;

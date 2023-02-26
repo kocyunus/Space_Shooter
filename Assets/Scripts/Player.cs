@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using YK.WeaponSystem;
-public class Player : MonoBehaviour,IHittable
+using YK.HealthSystem;
+public class Player : MonoBehaviour
 {
     public float speed = 2;
-
-
+    Health _health;
+    [SerializeField] int _initializeHealthValue = 3;
     public Transform playerShip;
 
 
@@ -34,11 +35,24 @@ public class Player : MonoBehaviour,IHittable
     public Button menuButton;
 
     [SerializeField] Weapon _weapon;
-
+    private void OnEnable()
+    {
+        GetHealth();
+    }
+    private void OnDisable()
+    {
+        _health._onDeath.RemoveAllListeners();
+        _health._onHit.RemoveAllListeners();
+    }
+    private void OnDestroy()
+    {
+        _health._onDeath.RemoveAllListeners();
+        _health._onHit.RemoveAllListeners();
+    }
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
-
+       
         foreach (Transform item in liveImagesUIParent)
         {
             lives.Add(item.GetComponent<Image>());
@@ -110,12 +124,12 @@ public class Player : MonoBehaviour,IHittable
 
 
 
-    private void GetHitFeedback()
+    public void GetHitFeedback()
     {
         hitSource.PlayOneShot(hitClip);
     }
 
-    private void Death()
+    public void Death()
     {
         isAlive = false;
         hitSource.PlayOneShot(deathClip);
@@ -124,11 +138,11 @@ public class Player : MonoBehaviour,IHittable
         StartCoroutine(DestroyCoroutine());
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
         for (int i = 0; i < lives.Count; i++)
         {
-            if (i >= health)
+            if (i >= _health.currentHealth)
             {
                 lives[i].color = Color.black;
             }
@@ -149,17 +163,11 @@ public class Player : MonoBehaviour,IHittable
         menuButton.interactable = false;
     }
 
-    public void GetHit(int damage, GameObject sender)
+    void GetHealth() 
     {
-        health -= damage;
-        UpdateUI();
-        if (health<=0)
-        {
-            Death();
-        }
-        else
-        {
-            GetHitFeedback();
-        }
+        if (_health == null)
+            _health = GetComponent<Health>();
+
+        _health.InitializeHealth(_initializeHealthValue);
     }
 }
