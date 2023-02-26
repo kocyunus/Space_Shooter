@@ -14,9 +14,8 @@ public class Enemy : MonoBehaviour
 
     public bool isShooting = false;
 
-    public float speed = 2;
-    public float speedVariation = 0.3f;
-    private Rigidbody2D rb2d;
+
+
     bool firstShoot = true;
 
     public EnemySpawner enemySpawner;
@@ -39,19 +38,15 @@ public class Enemy : MonoBehaviour
     {
         
         player = FindObjectOfType<Player>();
-        rb2d = GetComponent<Rigidbody2D>();
-        speed += UnityEngine.Random.Range(0, speedVariation);
+
+      
     }
 
-    //private void Start()
-    //{
-    //    rb2d.velocity = Vector3.down * speed;
-    //}
+
 
     private void Update()
     {
-        //Vector3 movementDirection = Vector3.down * speed * Time.deltaTime;
-        //transform.Translate(movementDirection, Space.World);
+
         if (player.isAlive)
         {
             Vector3 desiredDirection = player.transform.position - transform.position;
@@ -66,10 +61,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        rb2d.MovePosition(rb2d.position + Vector2.down * speed*Time.deltaTime);
-    }
     private IEnumerator ShootWithDelay(float shootingDelay)
     {
         if (firstShoot)
