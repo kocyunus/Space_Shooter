@@ -30,6 +30,8 @@ public class Projectile : MonoBehaviour,IHittable
         {
             if (hittable != null)
                 hittable.GetHit(1, gameObject);
+
+            GetHit(1, gameObject);
         }
     }
 
